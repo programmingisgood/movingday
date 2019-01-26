@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: TruckItemsUnloadSecond
   m_EditorClassIdentifier: 
   itemPrefabs:
-  - {fileID: 342192264279491858, guid: 1ceb59533c9c90741824b8409a12d15f, type: 3}
-  - {fileID: 342192264279491858, guid: 1ceb59533c9c90741824b8409a12d15f, type: 3}
-  - {fileID: 342192264279491858, guid: 1ceb59533c9c90741824b8409a12d15f, type: 3}
-  - {fileID: 342192264279491858, guid: 1ceb59533c9c90741824b8409a12d15f, type: 3}
-  - {fileID: 342192264279491858, guid: 1ceb59533c9c90741824b8409a12d15f, type: 3}
+  - {fileID: 2318491030406366095, guid: 1e7252e6e9ddec14b877aaea058257e5, type: 3}
+  - {fileID: 2318491030406366095, guid: 1e7252e6e9ddec14b877aaea058257e5, type: 3}
+  - {fileID: 2318491030406366095, guid: 1e7252e6e9ddec14b877aaea058257e5, type: 3}
+  - {fileID: 2318491030406366095, guid: 1e7252e6e9ddec14b877aaea058257e5, type: 3}
+  - {fileID: 2318491030406366095, guid: 1e7252e6e9ddec14b877aaea058257e5, type: 3}
