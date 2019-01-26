@@ -15,6 +15,7 @@ public class DN_MenuMannager : MonoBehaviour
     private bool CreatePauseScene;
     public bool TimerStart;
     public float Timer;
+    public bool FirstLevel;
     
     // Start is called before the first frame update
     void Start()
@@ -50,6 +51,7 @@ public class DN_MenuMannager : MonoBehaviour
     }
     public void StartGame()
     {
+        FirstLevel = true;
         TimerStart = true;
         TimePage.SetActive(true);
         CreatePauseScene = false;

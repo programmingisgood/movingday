@@ -22,7 +22,7 @@ public class BrianPlayerMovement : MonoBehaviour
     private bool grabbing = false;
     private Rigidbody grabbedObject = null;
     private bool moving = false;
-
+    public GameObject ControlPFI;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -44,6 +44,11 @@ public class BrianPlayerMovement : MonoBehaviour
         {
             grabbing = false;
             joint.connectedBody = null;
+        }
+        if(Input.GetAxis("Horizontal")!=0 && FindObjectOfType<DN_MenuMannager>().FirstLevel || Input.GetAxis("Vertical")!=0 && FindObjectOfType<DN_MenuMannager>().FirstLevel)
+        {
+            ControlPFI.SetActive(false);
+            FindObjectOfType<DN_MenuMannager>().FirstLevel = false;
         }
     }
 
