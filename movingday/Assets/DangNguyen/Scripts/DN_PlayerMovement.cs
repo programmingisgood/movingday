@@ -27,11 +27,12 @@ public class DN_PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
-      if(Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             Pull = !Pull;
         }
-      if(Pull && InPlace)
+
+        if (Pull && InPlace)
         {
             speed = 200;
         }
