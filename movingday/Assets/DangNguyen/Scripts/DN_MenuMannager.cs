@@ -2,16 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 public class DN_MenuMannager : MonoBehaviour
 {
+    public GameObject TimeText;
+    private Text TextScripts;
     public GameObject FirstMenuPage;
     public GameObject CreditsPage;
     public GameObject PauseMenu;
+    public GameObject TimePage;
     private bool MainMenu;
     private bool CreatePauseScene;
+    public bool TimerStart;
+    public float Timer;
+    
     // Start is called before the first frame update
     void Start()
     {
+        TextScripts = TimeText.GetComponent<Text>();
+        
         MainMenu = true;
         DontDestroyOnLoad(this.gameObject);
     }
@@ -19,6 +28,11 @@ public class DN_MenuMannager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(TimerStart)
+        {
+            Timer -= Time.deltaTime;
+            TextScripts.text = Timer.ToString();
+        }
         if(Input.GetKeyDown(KeyCode.Escape) && MainMenu == false)
             {
             CreatePauseScene = !CreatePauseScene;
@@ -36,6 +50,8 @@ public class DN_MenuMannager : MonoBehaviour
     }
     public void StartGame()
     {
+        TimerStart = true;
+        TimePage.SetActive(true);
         CreatePauseScene = false;
         PauseMenu.SetActive(false);
         SceneManager.LoadScene(1);
