@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: TruckItemsUnloadFirst
   m_EditorClassIdentifier: 
   itemPrefabs:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 342192264279491858, guid: 1ceb59533c9c90741824b8409a12d15f, type: 3}
+  - {fileID: 342192264279491858, guid: 1ceb59533c9c90741824b8409a12d15f, type: 3}

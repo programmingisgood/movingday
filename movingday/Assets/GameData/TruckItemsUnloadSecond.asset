@@ -12,4 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c2f3fc76cf2b3740bc9eb638ccdf146, type: 3}
   m_Name: TruckItemsUnloadSecond
   m_EditorClassIdentifier: 
-  itemPrefabs: []
+  itemPrefabs:
+  - {fileID: 342192264279491858, guid: 1ceb59533c9c90741824b8409a12d15f, type: 3}
+  - {fileID: 342192264279491858, guid: 1ceb59533c9c90741824b8409a12d15f, type: 3}
+  - {fileID: 342192264279491858, guid: 1ceb59533c9c90741824b8409a12d15f, type: 3}
+  - {fileID: 342192264279491858, guid: 1ceb59533c9c90741824b8409a12d15f, type: 3}
+  - {fileID: 342192264279491858, guid: 1ceb59533c9c90741824b8409a12d15f, type: 3}

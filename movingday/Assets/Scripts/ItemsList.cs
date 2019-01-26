@@ -8,5 +8,10 @@ using System.Collections.Generic;
 public class ItemsList : ScriptableObject
 {
     [SerializeField]
-    private List<GameObject> itemPrefabs;
+    private List<GameObject> itemPrefabs = null;
+
+    public List<GameObject> GetItemPrefabs()
+    {
+        return itemPrefabs;
+    }
 }
