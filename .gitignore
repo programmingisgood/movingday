@@ -34,3 +34,6 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+movingday/Assets/Prefabs/Pushing_PullingCube.prefab
+movingday/Assets/Prefabs/Pushing_PullingCube.prefab
+*.prefab

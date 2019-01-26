@@ -1,41 +1,14 @@
 fileFormatVersion: 2
-guid: ba1e828cf7d50814b9546584bb14849c
+guid: cec24f6327b994b46bc4aecedfbedb6c
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Mover_Body
-    100004: Mover_Head
-    100006: Mover_LArm
-    100008: Mover_LFoot
-    100010: Mover_RArm
-    100012: Mover_RFoot
     400000: //RootNode
-    400002: Mover_Body
-    400004: Mover_Head
-    400006: Mover_LArm
-    400008: Mover_LFoot
-    400010: Mover_RArm
-    400012: Mover_RFoot
-    2100000: diffuse
-    2300000: Mover_Body
-    2300002: Mover_Head
-    2300004: Mover_LArm
-    2300006: Mover_LFoot
-    2300008: Mover_RArm
-    2300010: Mover_RFoot
-    3300000: Mover_Body
-    3300002: Mover_Head
-    3300004: Mover_LArm
-    3300006: Mover_LFoot
-    3300008: Mover_RArm
-    3300010: Mover_RFoot
-    4300000: Mover_Body
-    4300002: Mover_Head
-    4300004: Mover_LFoot
-    4300006: Mover_RFoot
-    4300008: Mover_LArm
-    4300010: Mover_RArm
+    2100000: Diffuse
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Prop_HardwoodFloor
   externalObjects: {}
   materials:
     importMaterials: 1
