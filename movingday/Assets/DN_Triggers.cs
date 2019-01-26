@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class DN_Triggers : MonoBehaviour
 {
-    public bool RIghtTrigger;
+    public bool RightTrigger;
     public bool LeftTrigger;
+    public bool UpTrigger;
+    public bool DownTrigger;
     public GameObject Furniture;
     private DN_ObjectAttraction FurnitureScripts;
     // Start is called before the first frame update
@@ -38,21 +40,73 @@ private void OnTriggerEnter(Collider other)
 {
     if (other.tag == "Player")
     {
-        if (RIghtTrigger)
+        if (RightTrigger)
         {
             FurnitureScripts.RightPull = true;
             FurnitureScripts.LeftPull = false;
+                FurnitureScripts.UpPull = false;
+                FurnitureScripts.DownPull = false;
         }
         if (LeftTrigger)
         {
             FurnitureScripts.RightPull = false;
             FurnitureScripts.LeftPull = true;
-        }
+                FurnitureScripts.UpPull = false;
+                FurnitureScripts.DownPull = false;
+            }
+        if(UpTrigger)
+            {
+                FurnitureScripts.RightPull = false;
+                FurnitureScripts.LeftPull = false;
+                FurnitureScripts.UpPull = true;
+                FurnitureScripts.DownPull = false;
+            }
+        if(DownTrigger)
+            {
+                FurnitureScripts.RightPull = false;
+                FurnitureScripts.LeftPull = false;
+                FurnitureScripts.UpPull = false;
+                FurnitureScripts.DownPull = true;
+            }
     }
 }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            if (RightTrigger)
+            {
+                FurnitureScripts.RightPull = true;
+                FurnitureScripts.LeftPull = false;
+                FurnitureScripts.UpPull = false;
+                FurnitureScripts.DownPull = false;
+            }
+            if (LeftTrigger)
+            {
+                FurnitureScripts.RightPull = false;
+                FurnitureScripts.LeftPull = true;
+                FurnitureScripts.UpPull = false;
+                FurnitureScripts.DownPull = false;
+            }
+            if (UpTrigger)
+            {
+                FurnitureScripts.RightPull = false;
+                FurnitureScripts.LeftPull = false;
+                FurnitureScripts.UpPull = true;
+                FurnitureScripts.DownPull = false;
+            }
+            if (DownTrigger)
+            {
+                FurnitureScripts.RightPull = false;
+                FurnitureScripts.LeftPull = false;
+                FurnitureScripts.UpPull = false;
+                FurnitureScripts.DownPull = true;
+            }
+        }
+    }
 
 
-    
+
 
     //private void OnCollisionExit(Collision collision)
     //{
