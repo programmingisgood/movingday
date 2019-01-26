@@ -14,6 +14,9 @@ public class BrianPlayerMovement : MonoBehaviour
     [SerializeField]
     private Transform visuals = null;
 
+    [SerializeField]
+    private SpringJoint joint = null;
+
     private Rigidbody rb;
     private Vector3 moveDir = new Vector3(0, 0, 1f);
     private bool grabbing = false;
@@ -27,19 +30,20 @@ public class BrianPlayerMovement : MonoBehaviour
 
     void Update()
     {
-        visuals.transform.rotation = Quaternion.Slerp(visuals.transform.rotation, Quaternion.LookRotation(moveDir), Time.deltaTime * 20f);
+        visuals.transform.rotation = Quaternion.Slerp(visuals.transform.rotation, Quaternion.LookRotation(grabbing ? -moveDir : moveDir), Time.deltaTime * 20f);
 
         if (!grabbing && Input.GetKey(KeyCode.Return))
         {
             AttemptGrab();
         }
-        else if (grabbing)
+        else if (grabbing && Input.GetKey(KeyCode.Return))
         {
             UpdateGrabbing();
         }
         else
         {
             grabbing = false;
+            joint.connectedBody = null;
         }
     }
 
@@ -104,9 +108,8 @@ public class BrianPlayerMovement : MonoBehaviour
             dir.Normalize();
             if (Physics.SphereCast(transform.position, 0.5f, dir, out hit))
             {
-                Debug.Log("Grabbing");
                 // Apply a force in the movement direction.
-                grabbedObject.AddForceAtPosition(moveDir * speed * 0.1f * Time.deltaTime, hit.point);
+                joint.connectedBody = grabbedObject;
             }
         }
     }
