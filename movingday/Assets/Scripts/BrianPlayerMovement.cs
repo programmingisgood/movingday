@@ -17,20 +17,37 @@ public class BrianPlayerMovement : MonoBehaviour
     [SerializeField]
     private SpringJoint joint = null;
 
+    [SerializeField]
+    private new Transform camera = null;
+
     private Rigidbody rb;
     private Vector3 moveDir = new Vector3(0, 0, 1f);
     public bool grabbing = false;
     private Rigidbody grabbedObject = null;
     private bool moving = false;
     public GameObject ControlPFI;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+
+        DoCameraZoomIn();
+    }
+
+    private void DoCameraZoomIn()
+    {
+        Vector3 startPos = camera.localPosition;
+
+        camera.localPosition += new Vector3(0, 40f, 0);
+
+        camera.DOLocalMove(startPos, 10f).SetEase(Ease.InOutSine);
     }
     public GameObject Camera;
 
     void Update()
     {
+        // Prevent the moveDir from ever being zeroed out which will cause a warning.
+        moveDir = moveDir.magnitude < 0.00001f ? new Vector3(0, 0, 1f) : moveDir;
         visuals.transform.rotation = Quaternion.Slerp(visuals.transform.rotation, Quaternion.LookRotation(grabbing ? -moveDir : moveDir), Time.deltaTime * 20f);
 
         if (!grabbing && Input.GetKey(KeyCode.Return))
@@ -48,6 +65,11 @@ public class BrianPlayerMovement : MonoBehaviour
             if (grabbedObject != null)
             {
                 grabbedObject.gameObject.GetComponent<QuickOutline.Outline>().enabled = false;
+                MovingItem movingItem = grabbedObject.GetComponentInParent<MovingItem>();
+                if (movingItem != null)
+                {
+                    movingItem.SetGrabbed(false);
+                }
                 grabbedObject = null;
             }
         }
@@ -120,6 +142,15 @@ public class BrianPlayerMovement : MonoBehaviour
             }
         }
         grabbedObject = closestObject;
+        if (grabbedObject)
+        {
+            MovingItem movingItem = grabbedObject.GetComponentInParent<MovingItem>();
+            if (movingItem != null)
+            {
+                movingItem.SetGrabbed(true);
+            }
+        }
+
         grabbing = grabbedObject != null;
     }
 
