@@ -209,6 +209,8 @@ MonoBehaviour:
   speed: 30000
   visuals: {fileID: 312066976}
   joint: {fileID: 3759921547081664564}
+  rightArm: {fileID: 927998013}
+  leftArm: {fileID: 280855169}
   grabbing: 0
   ControlPFI: {fileID: 1600472243}
 --- !u!54 &8784163617810744801
@@ -751,8 +753,8 @@ SpringJoint:
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   serializedVersion: 2
-  m_Spring: 400
-  m_Damper: 20
+  m_Spring: 800
+  m_Damper: 10
   m_MinDistance: 0
   m_MaxDistance: 0
   m_Tolerance: 0.001

@@ -16,6 +16,15 @@ public class BrianPlayerMovement : MonoBehaviour
     [SerializeField]
     private SpringJoint joint = null;
 
+    [SerializeField]
+    private Transform rightArm = null;
+
+    [SerializeField]
+    private Transform leftArm = null;
+
+    private Quaternion startingRightRotation;
+    private Quaternion startingLeftRotation;
+
     private Rigidbody rb;
     private Vector3 moveDir = new Vector3(0, 0, 1f);
     public bool grabbing = false;
@@ -27,6 +36,9 @@ public class BrianPlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+
+        startingRightRotation = rightArm.rotation;
+        startingLeftRotation = leftArm.rotation;
     }
 
     public void SetInputDevice(InputDevice setInputDevice)
@@ -67,6 +79,12 @@ public class BrianPlayerMovement : MonoBehaviour
         {
             SetGrabbedObject(null);
         }
+
+        if (grabbing)
+        {
+            CheckGrabbingJointBreak();
+        }
+
         if(DN_MenuMannager.Restart)
         {
             ControlPFI.SetActive(false);
@@ -139,6 +157,7 @@ public class BrianPlayerMovement : MonoBehaviour
         {
             grabbing = false;
             joint.connectedBody = null;
+            AnimateArmsIn();
         }
 
         if (grabbedObject != null)
@@ -168,6 +187,40 @@ public class BrianPlayerMovement : MonoBehaviour
             outline.OutlineColor = new Color(0.9f, 0.45f, 0f);
             outline.OutlineWidth = 10f;
             outline.enabled = true;
+            AnimateArmsOut();
         }
+    }
+
+    // Check if we should break the grabbing joint if the object is too far away.
+    private void CheckGrabbingJointBreak()
+    {
+        if (grabbedObject != null)
+        {
+            float dist = (grabbedObject.transform.TransformPoint(joint.connectedAnchor) - transform.position).magnitude;
+            if (dist > 4f)
+            {
+                SetGrabbedObject(null);
+            }
+        }
+    }
+
+    private void AnimateArmsIn()
+    {
+        DOTween.Kill(rightArm);
+        rightArm.DOLocalRotate(startingRightRotation.eulerAngles, 1f);
+
+        DOTween.Kill(leftArm);
+        leftArm.DOLocalRotate(startingLeftRotation.eulerAngles, 1f);
+    }
+
+    private void AnimateArmsOut()
+    {
+        DOTween.Kill(rightArm);
+        Vector3 rotateGoal = startingRightRotation.eulerAngles + new Vector3(50f, 0, 0);
+        rightArm.DOLocalRotate(rotateGoal, 1f);
+
+        DOTween.Kill(leftArm);
+        rotateGoal = startingLeftRotation.eulerAngles - new Vector3(50f, 0, 0);
+        leftArm.DOLocalRotate(rotateGoal, 1f);
     }
 }

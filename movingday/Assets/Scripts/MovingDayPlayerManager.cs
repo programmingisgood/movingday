@@ -35,10 +35,11 @@ public class MovingDayPlayerManager : MonoBehaviour
             {
                 CreatePlayer(device);
             }
-            else if (Input.GetKey(KeyCode.Return) && !CheckContainsKeyboard())
-            {
-                CreatePlayer(null);
-            }
+        }
+
+        if (Input.GetKey(KeyCode.Return) && !CheckContainsKeyboard())
+        {
+            CreatePlayer(null);
         }
     }
 
