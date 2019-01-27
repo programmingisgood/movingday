@@ -12,11 +12,16 @@ public class ScoringIndicators : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            StartCoroutine(ShowScoring());
+            ShowScoring();
         }
     }
 
-    private IEnumerator ShowScoring()
+    public void ShowScoring()
+    {
+        StartCoroutine(ShowScoringCoroutine());
+    }
+
+    private IEnumerator ShowScoringCoroutine()
     {
         Object[] allMovingItems = Object.FindObjectsOfType<MovingItem>();
         foreach (Object movingItemObj in allMovingItems)

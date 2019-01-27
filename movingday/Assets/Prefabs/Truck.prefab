@@ -202,11 +202,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unloadItemsOrder:
   - unloadItems: {fileID: 11400000, guid: 9a9f7c6d8fb6e8140b72e95abc371026, type: 2}
-    pauseBetweenItems: 7
+    pauseBetweenItems: 10
   - unloadItems: {fileID: 11400000, guid: 57819b9a01cb8fc42823d5445f7bcf56, type: 2}
-    pauseBetweenItems: 3
+    pauseBetweenItems: 8
   - unloadItems: {fileID: 11400000, guid: fcf1a892cf42fcf4c941bc47d452ed37, type: 2}
-    pauseBetweenItems: 1
+    pauseBetweenItems: 8
   spawnPoint: {fileID: 4394256783232238552}
   itemExitPoint: {fileID: 8795070681629925113}
   itemFinishMovementPoint: {fileID: 2349895748280292275}
@@ -456,11 +456,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9141368848516439767, guid: 6ba0ad1ab13a5154493fb9680145bc2f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ba0ad1ab13a5154493fb9680145bc2f, type: 3}

@@ -44,7 +44,13 @@ public class BrianPlayerMovement : MonoBehaviour
         {
             grabbing = false;
             joint.connectedBody = null;
+            if (grabbedObject != null)
+            {
+                grabbedObject.gameObject.GetComponent<QuickOutline.Outline>().enabled = false;
+                grabbedObject = null;
+            }
         }
+
         if(FindObjectOfType<DN_MenuMannager>() != null)
         {
             if (Input.GetAxis("Horizontal") != 0 && FindObjectOfType<DN_MenuMannager>().FirstPrompt || Input.GetAxis("Vertical") != 0 && FindObjectOfType<DN_MenuMannager>().FirstPrompt)
@@ -53,7 +59,7 @@ public class BrianPlayerMovement : MonoBehaviour
                 FindObjectOfType<DN_MenuMannager>().FirstPrompt = false;
             }
         }
-        
+
     }
 
     void FixedUpdate()
@@ -119,6 +125,16 @@ public class BrianPlayerMovement : MonoBehaviour
             {
                 // Apply a force in the movement direction.
                 joint.connectedBody = grabbedObject;
+
+                // Outline the grabbed object.
+                QuickOutline.Outline outline = grabbedObject.gameObject.GetComponent<QuickOutline.Outline>();
+                if (outline == null)
+                {
+                    outline = grabbedObject.gameObject.AddComponent<QuickOutline.Outline>();
+                }
+                outline.OutlineColor = new Color(0.9f, 0.45f, 0f);
+                outline.OutlineWidth = 10f;
+                outline.enabled = true;
             }
         }
     }

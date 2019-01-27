@@ -54,7 +54,7 @@ public class Truck : MonoBehaviour
         // Slight pause before opening door.
         yield return new WaitForSeconds(0.5f);
 
-        Tween rotateTween = backDoor.DORotate(new Vector3(90f, 0, 0), 1f).SetEase(Ease.OutBack);
+        Tween rotateTween = backDoor.DORotate(new Vector3(90f, 0, 0), 1f).SetEase(Ease.OutBack).SetDelay(1f);
         yield return rotateTween.WaitForCompletion();
 
         Tween slideTween = backDoor.DOLocalMoveZ(-5, 0.5f).SetEase(Ease.InCubic);
