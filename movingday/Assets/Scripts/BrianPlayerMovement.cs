@@ -19,7 +19,7 @@ public class BrianPlayerMovement : MonoBehaviour
 
     private Rigidbody rb;
     private Vector3 moveDir = new Vector3(0, 0, 1f);
-    private bool grabbing = false;
+    public bool grabbing = false;
     private Rigidbody grabbedObject = null;
     private bool moving = false;
     public GameObject ControlPFI;

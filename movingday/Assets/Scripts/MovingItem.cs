@@ -27,19 +27,22 @@ public class MovingItem : MonoBehaviour
         movingRigidbody.isKinematic = false;
     }
 
-    //private void Update()
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return) && BoxPrompt)
+        {
+            if (FindObjectOfType<BrianPlayerMovement>().grabbing)
+            {
+                Prompt.SetActive(false);
+            }
+        }
+    }
+    //private void OnCollisionStay(Collision collision)
     //{
     //    if (Input.GetKeyDown(KeyCode.Return) && BoxPrompt)
     //    {
     //        Prompt.SetActive(false);
     //    }
     //}
-    private void OnCollisionStay(Collision collision)
-    {
-        if (Input.GetKeyDown(KeyCode.Return) && BoxPrompt)
-        {
-            Prompt.SetActive(false);
-        }
-    }
 
 }
