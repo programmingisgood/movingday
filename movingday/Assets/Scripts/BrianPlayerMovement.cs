@@ -79,6 +79,12 @@ public class BrianPlayerMovement : MonoBehaviour
         {
             SetGrabbedObject(null);
         }
+
+        if (grabbing)
+        {
+            CheckGrabbingJointBreak();
+        }
+
         if(DN_MenuMannager.Restart)
         {
             ControlPFI.SetActive(false);
@@ -182,6 +188,19 @@ public class BrianPlayerMovement : MonoBehaviour
             outline.OutlineWidth = 10f;
             outline.enabled = true;
             AnimateArmsOut();
+        }
+    }
+
+    // Check if we should break the grabbing joint if the object is too far away.
+    private void CheckGrabbingJointBreak()
+    {
+        if (grabbedObject != null)
+        {
+            float dist = (grabbedObject.transform.TransformPoint(joint.connectedAnchor) - transform.position).magnitude;
+            if (dist > 4f)
+            {
+                SetGrabbedObject(null);
+            }
         }
     }
 
