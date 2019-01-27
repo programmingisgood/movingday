@@ -17,11 +17,18 @@ public class DN_MenuMannager : MonoBehaviour
     public float Timer;
     public bool FirstPrompt;
     public GameObject Prompt;
+    private Text VicotryText;
+    public GameObject VictoryTextObj;
+    public GameObject VictotryScreen;
+    public bool StopShowScoring;
+    public GameObject EndingCamera;
+    public float AfterMathTimer;
+    public float Score;
     // Start is called before the first frame update
     void Start()
     {
         TextScripts = TimeText.GetComponent<Text>();
-        
+        VicotryText = VictoryTextObj.GetComponent<Text>();
         MainMenu = true;
         DontDestroyOnLoad(this.gameObject);
     }
@@ -33,6 +40,23 @@ public class DN_MenuMannager : MonoBehaviour
         {
             Timer -= Time.deltaTime;
             TextScripts.text = Timer.ToString();
+        }
+        if(AfterMathTimer <=0)
+        {
+            
+            if (!StopShowScoring)
+            {
+                VictotryScreen.SetActive(true);
+                FindObjectOfType<ScoringIndicators>().ShowScoring();
+                VicotryText.text = "Your score is " + Score.ToString();
+                StopShowScoring = true;
+            }
+        }
+        if(Timer <= 0)
+        {
+            AfterMathTimer -= Time.deltaTime;
+            EndingCamera.SetActive(true);
+            Timer = 0;
         }
      
         if(FirstPrompt)

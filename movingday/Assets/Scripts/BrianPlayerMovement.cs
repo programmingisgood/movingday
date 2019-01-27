@@ -43,6 +43,7 @@ public class BrianPlayerMovement : MonoBehaviour
 
         camera.DOLocalMove(startPos, 10f).SetEase(Ease.InOutSine);
     }
+    public GameObject Camera;
 
     void Update()
     {
@@ -66,11 +67,16 @@ public class BrianPlayerMovement : MonoBehaviour
                 ControlPFI.SetActive(false);
                 FindObjectOfType<DN_MenuMannager>().FirstPrompt = false;
             }
+            if (FindObjectOfType<DN_MenuMannager>().Timer <= 0)
+            {
+                Camera.SetActive(false);
+            }
         }
         if(FindObjectOfType<DN_MenuMannager>() == null)
         {
             ControlPFI.SetActive(false);
         }
+     
 
     }
 

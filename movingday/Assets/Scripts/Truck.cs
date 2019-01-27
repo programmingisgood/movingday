@@ -40,11 +40,17 @@ public class Truck : MonoBehaviour
             UnloadOrder unloadOrder = unloadItemsOrder[l];
             for (int i = 0; i < unloadOrder.unloadItems.GetItemPrefabs().Count; i++)
             {
-                // Spawn next item.
-                GameObject nextItem = Instantiate(unloadOrder.unloadItems.GetItemPrefabs()[i], spawnPoint.position, spawnPoint.rotation);
-                nextItem.GetComponent<MovingItem>().ExitTruck(itemExitPoint.position, itemFinishMovementPoint.position);
+                if (FindObjectOfType<DN_MenuMannager>() != null)
+                {
+                    if (FindObjectOfType<DN_MenuMannager>().Timer > 0)
+                    {
+                        // Spawn next item.
+                        GameObject nextItem = Instantiate(unloadOrder.unloadItems.GetItemPrefabs()[i], spawnPoint.position, spawnPoint.rotation);
+                        nextItem.GetComponent<MovingItem>().ExitTruck(itemExitPoint.position, itemFinishMovementPoint.position);
 
-                yield return new WaitForSeconds(unloadOrder.pauseBetweenItems);
+                        yield return new WaitForSeconds(unloadOrder.pauseBetweenItems);
+                    }
+                }
             }
         }
     }

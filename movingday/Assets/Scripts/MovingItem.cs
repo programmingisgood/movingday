@@ -7,8 +7,10 @@ public class MovingItem : MonoBehaviour
 {
     public GameObject Prompt;
     public bool BoxPrompt;
+    private bool Protected;
     [SerializeField]
     private Rigidbody movingRigidbody = null;
+    private bool StopGivingScore;
 
     private bool grabbed = false;
     private float alignSpinSpeed = 600f;
@@ -45,11 +47,39 @@ public class MovingItem : MonoBehaviour
                 Prompt.SetActive(false);
             }
         }
+        if(FindObjectOfType<DN_MenuMannager>().Timer <=0 && !Protected)
+        {
+            Destroy(gameObject.GetComponent<MovingItem>());
+            
+        }
 
         if (!grabbed)
         {
             RotateAlignToGrid();
             PositionAlignToGrid();
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "CountingBox")
+        {
+            Protected = true;
+            if (FindObjectOfType<DN_MenuMannager>() != null)
+            {
+
+                if (FindObjectOfType<DN_MenuMannager>().AfterMathTimer <= 0 && !StopGivingScore)
+                {
+                    FindObjectOfType<DN_MenuMannager>().Score += 1;
+                    StopGivingScore = true;
+                }
+            }
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "CountingBox")
+        {
+            Protected = false;
         }
     }
 
