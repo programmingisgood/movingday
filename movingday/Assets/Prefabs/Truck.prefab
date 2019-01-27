@@ -201,6 +201,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unloadItemsOrder:
+  - unloadItems: {fileID: 11400000, guid: 9b43cf96c69d4fc47824109a6b17ae66, type: 2}
+    pauseBetweenItems: 10
   - unloadItems: {fileID: 11400000, guid: 9a9f7c6d8fb6e8140b72e95abc371026, type: 2}
     pauseBetweenItems: 10
   - unloadItems: {fileID: 11400000, guid: 57819b9a01cb8fc42823d5445f7bcf56, type: 2}

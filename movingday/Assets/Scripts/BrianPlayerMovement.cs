@@ -9,9 +9,6 @@ public class BrianPlayerMovement : MonoBehaviour
     [SerializeField]
     private float speed = 6f;
 
-    //[SerializeField]
-    //private float grabRadius = 1f;
-
     [SerializeField]
     private Transform visuals = null;
 
@@ -39,9 +36,9 @@ public class BrianPlayerMovement : MonoBehaviour
     {
         Vector3 startPos = camera.localPosition;
 
-        camera.localPosition += new Vector3(0, 40f, 0);
+        camera.localPosition += new Vector3(0, 30f, 0);
 
-        camera.DOLocalMove(startPos, 10f).SetEase(Ease.InOutSine);
+        camera.DOLocalMove(startPos, 8f).SetEase(Ease.InOutSine);
     }
     public GameObject Camera;
 
@@ -76,7 +73,7 @@ public class BrianPlayerMovement : MonoBehaviour
         {
             ControlPFI.SetActive(false);
         }
-     
+
 
     }
 
