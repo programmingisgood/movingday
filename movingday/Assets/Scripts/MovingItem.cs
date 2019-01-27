@@ -7,9 +7,11 @@ public class MovingItem : MonoBehaviour
 {
     public GameObject Prompt;
     public bool BoxPrompt;
+    private bool Protected;
     [SerializeField]
     private Rigidbody movingRigidbody = null;
-
+    private bool StopGivingScore;
+    
     public void ExitTruck(Vector3 exitPoint, Vector3 finishPoint)
     {
         StartCoroutine(ExitTruckCoroutine(exitPoint, finishPoint));
@@ -35,6 +37,34 @@ public class MovingItem : MonoBehaviour
             {
                 Prompt.SetActive(false);
             }
+        }
+        if(FindObjectOfType<DN_MenuMannager>().Timer <=0 && !Protected)
+        {
+            Destroy(gameObject.GetComponent<MovingItem>());
+            
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "CountingBox")
+        {
+            Protected = true;
+            if (FindObjectOfType<DN_MenuMannager>() != null)
+            {
+
+                if (FindObjectOfType<DN_MenuMannager>().AfterMathTimer <= 0 && !StopGivingScore)
+                {
+                    FindObjectOfType<DN_MenuMannager>().Score += 1;
+                    StopGivingScore = true;
+                }
+            }
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "CountingBox")
+        {
+            Protected = false;
         }
     }
     //private void OnCollisionStay(Collision collision)

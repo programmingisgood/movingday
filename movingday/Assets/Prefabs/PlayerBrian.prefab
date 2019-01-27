@@ -295,6 +295,7 @@ MonoBehaviour:
   joint: {fileID: 3759921547081664564}
   grabbing: 0
   ControlPFI: {fileID: 1600472243}
+  Camera: {fileID: 534669902}
 --- !u!54 &8784163617810744801
 Rigidbody:
   m_ObjectHideFlags: 0
