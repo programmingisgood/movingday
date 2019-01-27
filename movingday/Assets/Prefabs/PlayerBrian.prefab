@@ -289,10 +289,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fe74019158e6ae46b51ca506045d087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20000
+  speed: 30000
   grabRadius: 5
   visuals: {fileID: 312066976}
   joint: {fileID: 3759921547081664564}
+  camera: {fileID: 534669905}
   grabbing: 0
   ControlPFI: {fileID: 1600472243}
 --- !u!54 &8784163617810744801
