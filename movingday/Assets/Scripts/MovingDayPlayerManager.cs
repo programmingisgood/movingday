@@ -76,6 +76,7 @@ public class MovingDayPlayerManager : MonoBehaviour
         newPlayerInputData.keyboard = inputDevice == null;
         newPlayerInputData.playerGO = Instantiate(playerPrefab);
         newPlayerInputData.playerGO.GetComponent<BrianPlayerMovement>().SetInputDevice(inputDevice);
+        newPlayerInputData.playerGO.GetComponent<BrianPlayerMovement>().SetPlayerIndex(players.Count);
         players.Add(newPlayerInputData);
     }
 }

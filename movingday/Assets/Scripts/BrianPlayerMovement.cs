@@ -10,16 +10,15 @@ public class BrianPlayerMovement : MonoBehaviour
     [SerializeField]
     private float speed = 6f;
 
-    [SerializeField]
     private Transform visuals = null;
 
     [SerializeField]
     private SpringJoint joint = null;
 
     [SerializeField]
-    private Transform rightArm = null;
+    private List<GameObject> models = null;
 
-    [SerializeField]
+    private Transform rightArm = null;
     private Transform leftArm = null;
 
     [SerializeField]
@@ -41,9 +40,28 @@ public class BrianPlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+    }
 
-        startingRightRotation = rightArm.rotation;
-        startingLeftRotation = leftArm.rotation;
+    public void SetPlayerIndex(int setIndex)
+    {
+        setIndex = Mathf.Min(setIndex, models.Count - 1);
+        SetUsingModel(setIndex);
+    }
+
+    private void SetUsingModel(int modelIndex)
+    {
+        for (int m = 0; m < models.Count; m++)
+        {
+            models[m].SetActive(modelIndex == m);
+            if (modelIndex == m)
+            {
+                rightArm = models[m].transform.Find("Mover_RArm");
+                leftArm = models[m].transform.Find("Mover_LArm");
+                startingRightRotation = rightArm.rotation;
+                startingLeftRotation = leftArm.rotation;
+                visuals = models[m].transform;
+            }
+        }
     }
 
     public void SetInputDevice(InputDevice setInputDevice)
