@@ -67,7 +67,8 @@ public class DN_MenuMannager : MonoBehaviour
         if(TimerStart)
         {
             Timer -= Time.deltaTime;
-            TextScripts.text = Timer.ToString();
+
+            TextScripts.text = Timer.ToString() ;
         }
         if(AfterMathTimer <=0)
         {
