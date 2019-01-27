@@ -2783,10 +2783,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: d931f7cacba8ff44ea0c9456b26a95dc, type: 3}
-    m_FontSize: 60
+    m_FontSize: 50
     m_FontStyle: 0
-    m_BestFit: 1
-    m_MinSize: 6
+    m_BestFit: 0
+    m_MinSize: 5
     m_MaxSize: 84
     m_Alignment: 3
     m_AlignByGeometry: 0
@@ -6369,7 +6369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.38039216, g: 0.972549, b: 0.9372549, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
