@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using DG.Tweening;
+using InControl;
 
 public class BrianPlayerMovement : MonoBehaviour
 {
@@ -15,32 +16,23 @@ public class BrianPlayerMovement : MonoBehaviour
     [SerializeField]
     private SpringJoint joint = null;
 
-    [SerializeField]
-    private new Transform camera = null;
-
     private Rigidbody rb;
     private Vector3 moveDir = new Vector3(0, 0, 1f);
     public bool grabbing = false;
     private Rigidbody grabbedObject = null;
     private bool moving = false;
     public GameObject ControlPFI;
+    private InputDevice myInputDevice = null;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-
-        DoCameraZoomIn();
     }
 
-    private void DoCameraZoomIn()
+    public void SetInputDevice(InputDevice setInputDevice)
     {
-        Vector3 startPos = camera.localPosition;
-
-        camera.localPosition += new Vector3(0, 30f, 0);
-
-        camera.DOLocalMove(startPos, 8f).SetEase(Ease.InOutSine);
+        myInputDevice = setInputDevice;
     }
-    public GameObject Camera;
 
     void Update()
     {
@@ -48,11 +40,11 @@ public class BrianPlayerMovement : MonoBehaviour
         moveDir = moveDir.magnitude < 0.00001f ? new Vector3(0, 0, 1f) : moveDir;
         visuals.transform.rotation = Quaternion.Slerp(visuals.transform.rotation, Quaternion.LookRotation(grabbing ? -moveDir : moveDir), Time.deltaTime * 20f);
 
-        if (!grabbing && Input.GetKey(KeyCode.Return))
+        if (!grabbing && myInputDevice.GetControl(InputControlType.Action1))
         {
             AttemptGrab();
         }
-        else if (grabbing && !Input.GetKey(KeyCode.Return))
+        else if (grabbing && !myInputDevice.GetControl(InputControlType.Action1))
         {
             SetGrabbedObject(null);
         }
@@ -64,18 +56,19 @@ public class BrianPlayerMovement : MonoBehaviour
 
         if(FindObjectOfType<DN_MenuMannager>() != null)
         {
-            if (Input.GetAxis("Horizontal") != 0 && FindObjectOfType<DN_MenuMannager>().FirstPrompt || Input.GetAxis("Vertical") != 0 && FindObjectOfType<DN_MenuMannager>().FirstPrompt)
+            Vector2 inputDir = myInputDevice.Direction;
+            if (inputDir.x != 0 && FindObjectOfType<DN_MenuMannager>().FirstPrompt || inputDir.y != 0 && FindObjectOfType<DN_MenuMannager>().FirstPrompt)
             {
                 ControlPFI.SetActive(false);
                 FindObjectOfType<DN_MenuMannager>().FirstPrompt = false;
             }
             if (FindObjectOfType<DN_MenuMannager>().Timer <= 0)
             {
-                Camera.SetActive(false);
+                Camera.main.gameObject.SetActive(false);
             }
             if (FindObjectOfType<DN_MenuMannager>().Timer > 0)
             {
-                Camera.SetActive(true);
+                Camera.main.gameObject.SetActive(true);
             }
         }
         if(FindObjectOfType<DN_MenuMannager>() == null)
@@ -88,8 +81,9 @@ public class BrianPlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        float horz = Input.GetAxis("Horizontal");
-        float vert = Input.GetAxis("Vertical");
+        Vector2 inputDir = myInputDevice.Direction;
+        float horz = inputDir.x;
+        float vert = inputDir.y;
 
         moving = Mathf.Abs(horz) > 0f || Mathf.Abs(vert) > 0f;
         if (moving)
