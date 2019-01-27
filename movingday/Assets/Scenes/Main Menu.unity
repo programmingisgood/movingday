@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.528
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.32938787, g: 0.36757827, b: 0.42766425, a: 0.528}
+  m_IndirectSpecularColor: {r: 0.3293883, g: 0.36757907, b: 0.4276649, a: 0.528}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4990,31 +4990,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 156944528963903053, guid: 743eab5868a80254d8a468297c5f5729,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 156944529667930963, guid: 743eab5868a80254d8a468297c5f5729,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.00008773804
-      objectReference: {fileID: 0}
-    - target: {fileID: 156944529667930963, guid: 743eab5868a80254d8a468297c5f5729,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 585.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 156944529667930962, guid: 743eab5868a80254d8a468297c5f5729,
-        type: 3}
-      propertyPath: m_Text
-      value: 'Super mover brothers: the motion picture'
-      objectReference: {fileID: 0}
-    - target: {fileID: 156944529667930962, guid: 743eab5868a80254d8a468297c5f5729,
-        type: 3}
-      propertyPath: m_FontData.m_BestFit
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 743eab5868a80254d8a468297c5f5729, type: 3}
