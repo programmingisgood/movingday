@@ -28,6 +28,8 @@ public class DN_MenuMannager : MonoBehaviour
     public bool TestScene;
     public static DN_MenuMannager MenuInstance;
     public static bool Restart;
+    public GameObject CreditCamera;
+    public GameObject MainMenuCamera;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -128,11 +130,15 @@ public class DN_MenuMannager : MonoBehaviour
     {
         CreditsPage.SetActive(true);
         FirstMenuPage.SetActive(false);
+        MainMenuCamera.SetActive(false);
+        CreditCamera.SetActive(true);
     }
     public void back()
     {
         CreditsPage.SetActive(false);
         FirstMenuPage.SetActive(true);
+        MainMenuCamera.SetActive(true);
+        CreditCamera.SetActive(false);
     }
     public void ExitGame()
     {
