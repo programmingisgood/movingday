@@ -47,7 +47,7 @@ public class DN_MenuMannager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-       
+
     }
     void Start()
     {
@@ -65,7 +65,7 @@ public class DN_MenuMannager : MonoBehaviour
         {
             MainMenu = true;
         }
-      
+
         //if(MainMenu)
         //{
         //    CreditCamera = GameObject.Find("TruckCamera");
@@ -75,22 +75,22 @@ public class DN_MenuMannager : MonoBehaviour
         VicotryText = VictoryTextObj.GetComponent<Text>();
         DontDestroyOnLoad(this.gameObject);
         Timer = StarterTimer;
-       
+
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+
         if (TimerStart)
         {
             Timer -= Time.deltaTime;
 
-            TextScripts.text = Timer.ToString() ;
+            TextScripts.text = ((int)Timer).ToString() ;
         }
         if(AfterMathTimer <=0)
         {
-            
+
             if (!StopShowScoring)
             {
                 EndingCamera.SetActive(true);
@@ -108,14 +108,14 @@ public class DN_MenuMannager : MonoBehaviour
                 SceneCameraScripts = SceneCamera.GetComponent<Camera>();
                 SceneCameraScripts.enabled = false;
                 OneTimeBool = true;
-                
+
             }
-            
+
             EndingCamera.SetActive(true);
             AfterMathTimer -= Time.deltaTime;
             Timer = 0;
         }
-     
+
         if(FirstPrompt)
         {
             Prompt.SetActive(true);
@@ -124,8 +124,8 @@ public class DN_MenuMannager : MonoBehaviour
         {
             Prompt.SetActive(false);
         }
-        
-       
+
+
         if(Input.GetKeyDown(KeyCode.Escape) && MainMenu == false)
             {
             CreatePauseScene = !CreatePauseScene;
@@ -230,7 +230,7 @@ public class DN_MenuMannager : MonoBehaviour
     {
         Time.timeScale = 1;
         CreatePauseScene = false;
-        
+
     }
     public void NextScene()
     {
