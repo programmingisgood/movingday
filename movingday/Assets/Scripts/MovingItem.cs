@@ -5,6 +5,8 @@ using DG.Tweening;
 
 public class MovingItem : MonoBehaviour
 {
+    public GameObject Prompt;
+    public bool BoxPrompt;
     [SerializeField]
     private Rigidbody movingRigidbody = null;
 
@@ -15,6 +17,7 @@ public class MovingItem : MonoBehaviour
 
     private IEnumerator ExitTruckCoroutine(Vector3 exitPoint, Vector3 finishPoint)
     {
+        
         movingRigidbody.isKinematic = true;
 
         yield return transform.DOMove(exitPoint, 1f).SetEase(Ease.InSine).WaitForCompletion();
@@ -23,4 +26,20 @@ public class MovingItem : MonoBehaviour
 
         movingRigidbody.isKinematic = false;
     }
+
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Return) && BoxPrompt)
+    //    {
+    //        Prompt.SetActive(false);
+    //    }
+    //}
+    private void OnCollisionStay(Collision collision)
+    {
+        if (Input.GetKeyDown(KeyCode.Return) && BoxPrompt)
+        {
+            Prompt.SetActive(false);
+        }
+    }
+
 }
