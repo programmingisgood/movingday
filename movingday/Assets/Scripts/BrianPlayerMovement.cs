@@ -22,6 +22,11 @@ public class BrianPlayerMovement : MonoBehaviour
     [SerializeField]
     private Transform leftArm = null;
 
+    [SerializeField]
+    private List<AudioSource> grabAudioSources = null;
+
+    private int currentGrabAudioSource = 0;
+
     private Quaternion startingRightRotation;
     private Quaternion startingLeftRotation;
 
@@ -188,6 +193,13 @@ public class BrianPlayerMovement : MonoBehaviour
             outline.OutlineWidth = 10f;
             outline.enabled = true;
             AnimateArmsOut();
+
+            grabAudioSources[currentGrabAudioSource].Play();
+            currentGrabAudioSource++;
+            if (currentGrabAudioSource >= grabAudioSources.Count)
+            {
+                currentGrabAudioSource = 0;
+            }
         }
     }
 
