@@ -68,6 +68,10 @@ public class BrianPlayerMovement : MonoBehaviour
             {
                 Camera.SetActive(false);
             }
+            if (FindObjectOfType<DN_MenuMannager>().Timer > 0)
+            {
+                Camera.SetActive(true);
+            }
         }
         if(FindObjectOfType<DN_MenuMannager>() == null)
         {

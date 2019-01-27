@@ -15,6 +15,7 @@ public class DN_MenuMannager : MonoBehaviour
     private bool CreatePauseScene;
     public bool TimerStart;
     public float Timer;
+    public float StarterTimer;
     public bool FirstPrompt;
     public GameObject Prompt;
     private Text VicotryText;
@@ -119,13 +120,22 @@ public class DN_MenuMannager : MonoBehaviour
     {
         Scene CurrentScene = SceneManager.GetActiveScene();
         string sceneName = CurrentScene.name;
+        EndingCamera.SetActive(false);
+        if (sceneName == "DangTest")
+        {
+            CreatePauseScene = false;
+            SceneManager.LoadScene("DangTest");
+        }
         if (sceneName == "Main")
         {
             CreatePauseScene = false;
             SceneManager.LoadScene("Main");
         }
         Time.timeScale = 1;
-        
+        AfterMathTimer = 1;
+        Timer = StarterTimer;
+        VictotryScreen.SetActive(false);
+        StopShowScoring = false;
     }
     public void Resume()
     {
