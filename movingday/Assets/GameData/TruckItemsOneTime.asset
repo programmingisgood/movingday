@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c2f3fc76cf2b3740bc9eb638ccdf146, type: 3}
+  m_Name: TruckItemsOneTime
+  m_EditorClassIdentifier: 
+  itemPrefabs:
+  - {fileID: 342192264279491858, guid: e7f925b946eb2f54ba21d5effa66f9fe, type: 3}
+  - {fileID: 342192264279491858, guid: 8af0a154f8075bd47a0a857cc6c4b9ca, type: 3}

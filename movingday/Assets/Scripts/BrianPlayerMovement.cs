@@ -45,11 +45,15 @@ public class BrianPlayerMovement : MonoBehaviour
             grabbing = false;
             joint.connectedBody = null;
         }
-        if(Input.GetAxis("Horizontal")!=0 && FindObjectOfType<DN_MenuMannager>().FirstLevel || Input.GetAxis("Vertical")!=0 && FindObjectOfType<DN_MenuMannager>().FirstLevel)
+        if(FindObjectOfType<DN_MenuMannager>() != null)
         {
-            ControlPFI.SetActive(false);
-            FindObjectOfType<DN_MenuMannager>().FirstLevel = false;
+            if (Input.GetAxis("Horizontal") != 0 && FindObjectOfType<DN_MenuMannager>().FirstPrompt || Input.GetAxis("Vertical") != 0 && FindObjectOfType<DN_MenuMannager>().FirstPrompt)
+            {
+                ControlPFI.SetActive(false);
+                FindObjectOfType<DN_MenuMannager>().FirstPrompt = false;
+            }
         }
+        
     }
 
     void FixedUpdate()

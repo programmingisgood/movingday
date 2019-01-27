@@ -15,8 +15,8 @@ public class DN_MenuMannager : MonoBehaviour
     private bool CreatePauseScene;
     public bool TimerStart;
     public float Timer;
-    public bool FirstLevel;
-    
+    public bool FirstPrompt;
+    public GameObject Prompt;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +34,17 @@ public class DN_MenuMannager : MonoBehaviour
             Timer -= Time.deltaTime;
             TextScripts.text = Timer.ToString();
         }
+     
+        if(FirstPrompt)
+        {
+            Prompt.SetActive(true);
+        }
+        else
+        {
+            Prompt.SetActive(false);
+        }
+        
+       
         if(Input.GetKeyDown(KeyCode.Escape) && MainMenu == false)
             {
             CreatePauseScene = !CreatePauseScene;
@@ -51,7 +62,7 @@ public class DN_MenuMannager : MonoBehaviour
     }
     public void StartGame()
     {
-        FirstLevel = true;
+        FirstPrompt = true;
         TimerStart = true;
         TimePage.SetActive(true);
         CreatePauseScene = false;

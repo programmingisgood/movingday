@@ -1099,7 +1099,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &330527819
 PrefabInstance:
@@ -3060,8 +3060,77 @@ Transform:
   m_LocalScale: {x: 500, y: 500, z: 500}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1100982196
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 342192264279491858, guid: 15657dfc0ba25324bb0e269bf6dbba88,
+        type: 3}
+      propertyPath: m_Name
+      value: PromptBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463442996541706267, guid: 15657dfc0ba25324bb0e269bf6dbba88,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 32.027893
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463442996541706267, guid: 15657dfc0ba25324bb0e269bf6dbba88,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.076873735
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463442996541706267, guid: 15657dfc0ba25324bb0e269bf6dbba88,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.543202
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463442996541706267, guid: 15657dfc0ba25324bb0e269bf6dbba88,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463442996541706267, guid: 15657dfc0ba25324bb0e269bf6dbba88,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463442996541706267, guid: 15657dfc0ba25324bb0e269bf6dbba88,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463442996541706267, guid: 15657dfc0ba25324bb0e269bf6dbba88,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463442996541706267, guid: 15657dfc0ba25324bb0e269bf6dbba88,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463442996541706267, guid: 15657dfc0ba25324bb0e269bf6dbba88,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463442996541706267, guid: 15657dfc0ba25324bb0e269bf6dbba88,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463442996541706267, guid: 15657dfc0ba25324bb0e269bf6dbba88,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 15657dfc0ba25324bb0e269bf6dbba88, type: 3}
 --- !u!1 &1116060734
 GameObject:
   m_ObjectHideFlags: 0
@@ -3126,7 +3195,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 87
+  m_RootOrder: 88
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1142470779
 PrefabInstance:
@@ -3543,7 +3612,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1001 &1239650124
 PrefabInstance:
@@ -4578,6 +4647,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4631778481424122534, guid: 977f0f89d0e01d848b41f1f5a241a854,
+        type: 3}
+      propertyPath: unloadItemsOrder.Array.data[0].unloadItems
+      value: 
+      objectReference: {fileID: 11400000, guid: 9b43cf96c69d4fc47824109a6b17ae66,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 977f0f89d0e01d848b41f1f5a241a854, type: 3}
 --- !u!1001 &1577935428
