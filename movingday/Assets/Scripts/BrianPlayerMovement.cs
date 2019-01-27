@@ -59,6 +59,10 @@ public class BrianPlayerMovement : MonoBehaviour
                 FindObjectOfType<DN_MenuMannager>().FirstPrompt = false;
             }
         }
+        if(FindObjectOfType<DN_MenuMannager>() == null)
+        {
+            ControlPFI.SetActive(false);
+        }
 
     }
 
