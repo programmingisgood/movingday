@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 using DG.Tweening;
 
 public class BrianPlayerMovement : MonoBehaviour
@@ -8,8 +9,8 @@ public class BrianPlayerMovement : MonoBehaviour
     [SerializeField]
     private float speed = 6f;
 
-    [SerializeField]
-    private float grabRadius = 1f;
+    //[SerializeField]
+    //private float grabRadius = 1f;
 
     [SerializeField]
     private Transform visuals = null;
@@ -53,24 +54,9 @@ public class BrianPlayerMovement : MonoBehaviour
         {
             AttemptGrab();
         }
-        else if (grabbing && Input.GetKey(KeyCode.Return))
+        else if (grabbing && !Input.GetKey(KeyCode.Return))
         {
-            UpdateGrabbing();
-        }
-        else
-        {
-            grabbing = false;
-            joint.connectedBody = null;
-            if (grabbedObject != null)
-            {
-                grabbedObject.gameObject.GetComponent<QuickOutline.Outline>().enabled = false;
-                MovingItem movingItem = grabbedObject.GetComponentInParent<MovingItem>();
-                if (movingItem != null)
-                {
-                    movingItem.SetGrabbed(false);
-                }
-                grabbedObject = null;
-            }
+            SetGrabbedObject(null);
         }
 
         if(FindObjectOfType<DN_MenuMannager>() != null)
@@ -106,71 +92,57 @@ public class BrianPlayerMovement : MonoBehaviour
 
     private void AttemptGrab()
     {
-        // Find the closest dynamic object.
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, grabRadius);
-        Rigidbody closestObject = null;
-        float minDist = grabRadius * grabRadius;
-        foreach (Collider collider in hitColliders)
-        {
-            // Ignore ourself.
-            if (collider.transform.IsChildOf(transform))
-            {
-                continue;
-            }
-            // Ignore the already closest object.
-            if (closestObject != null && collider.transform.IsChildOf(closestObject.transform))
-            {
-                continue;
-            }
+        grabbedObject = null;
+        grabbing = false;
 
-            Rigidbody objectRB = collider.gameObject.GetComponentInParent<Rigidbody>();
-            if (objectRB != null)
+        Vector3 moveDirNorm = moveDir.normalized;
+        RaycastHit[] hits = Physics.SphereCastAll(transform.position - moveDirNorm * 1f, 1f, moveDirNorm, 4f).OrderBy(h => h.distance).ToArray();
+        foreach (RaycastHit hit in hits)
+        {
+            MovingItem movingItem = hit.collider.gameObject.GetComponentInParent<MovingItem>();
+            if (movingItem != null)
             {
-                Vector3 diff = objectRB.transform.position - transform.position;
-                float dist = diff.x * diff.x + diff.y * diff.y + diff.z * diff.z;
-                if (dist < minDist)
-                {
-                    closestObject = objectRB;
-                    minDist = dist;
-                }
+                SetGrabbedObject(movingItem.GetComponent<Rigidbody>());
+                break;
             }
         }
-        grabbedObject = closestObject;
-        if (grabbedObject)
+    }
+
+    private void SetGrabbedObject(Rigidbody setGrabbedObject)
+    {
+        if (setGrabbedObject == null)
         {
+            grabbing = false;
+            joint.connectedBody = null;
+        }
+
+        if (grabbedObject != null)
+        {
+            grabbedObject.gameObject.GetComponent<QuickOutline.Outline>().enabled = false;
             MovingItem movingItem = grabbedObject.GetComponentInParent<MovingItem>();
             if (movingItem != null)
             {
-                movingItem.SetGrabbed(true);
+                movingItem.SetGrabbed(false);
             }
+            grabbedObject = null;
         }
 
+        grabbedObject = setGrabbedObject;
         grabbing = grabbedObject != null;
-    }
 
-    private void UpdateGrabbing()
-    {
-        if (moving && grabbedObject != null)
+        if (grabbedObject != null)
         {
-            // Find the closest point on this object to the player.
-            RaycastHit hit;
-            Vector3 dir = grabbedObject.transform.position - transform.position;
-            dir.Normalize();
-            if (Physics.SphereCast(transform.position, 0.5f, dir, out hit))
-            {
-                // Apply a force in the movement direction.
-                joint.connectedBody = grabbedObject;
+            joint.connectedBody = grabbedObject;
 
-                // Outline the grabbed object.
-                QuickOutline.Outline outline = grabbedObject.gameObject.GetComponent<QuickOutline.Outline>();
-                if (outline == null)
-                {
-                    outline = grabbedObject.gameObject.AddComponent<QuickOutline.Outline>();
-                }
-                outline.OutlineColor = new Color(0.9f, 0.45f, 0f);
-                outline.OutlineWidth = 10f;
-                outline.enabled = true;
+            // Outline the grabbed object.
+            QuickOutline.Outline outline = grabbedObject.gameObject.GetComponent<QuickOutline.Outline>();
+            if (outline == null)
+            {
+                outline = grabbedObject.gameObject.AddComponent<QuickOutline.Outline>();
             }
+            outline.OutlineColor = new Color(0.9f, 0.45f, 0f);
+            outline.OutlineWidth = 10f;
+            outline.enabled = true;
         }
     }
 }

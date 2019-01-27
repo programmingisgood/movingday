@@ -11,7 +11,7 @@ public class MovingItem : MonoBehaviour
     private Rigidbody movingRigidbody = null;
 
     private bool grabbed = false;
-    private float alignSpinSpeed = 400f;
+    private float alignSpinSpeed = 600f;
     private float alignMoveSpeed = 500f;
 
     public void ExitTruck(Vector3 exitPoint, Vector3 finishPoint)
