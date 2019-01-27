@@ -104,14 +104,14 @@ public class BrianPlayerMovement : MonoBehaviour
                 ControlPFI.SetActive(false);
                 FindObjectOfType<DN_MenuMannager>().FirstPrompt = false;
             }
-            if (FindObjectOfType<DN_MenuMannager>().Timer <= 0)
-            {
-                Camera.main.gameObject.SetActive(false);
-            }
-            if (FindObjectOfType<DN_MenuMannager>().Timer > 0)
-            {
-                Camera.main.gameObject.SetActive(true);
-            }
+            //if (FindObjectOfType<DN_MenuMannager>().Timer <= 0)
+            //{
+            //    Camera.main.gameObject.SetActive(false);
+            //}
+            //if (FindObjectOfType<DN_MenuMannager>().Timer > 0)
+            //{
+            //    Camera.main.gameObject.SetActive(true);
+            //}
         }
         if(FindObjectOfType<DN_MenuMannager>() == null)
         {

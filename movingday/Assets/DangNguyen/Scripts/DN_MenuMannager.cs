@@ -28,8 +28,13 @@ public class DN_MenuMannager : MonoBehaviour
     public bool TestScene;
     public static DN_MenuMannager MenuInstance;
     public static bool Restart;
-    public GameObject CreditCamera;
-    public GameObject MainMenuCamera;
+    private GameObject CreditCamera;
+    private GameObject MainMenuCamera;
+    private GameObject SceneCamera;
+    private Camera CameraScripts;
+    private Camera SceneCameraScripts;
+    private bool OneTimeBool;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -42,21 +47,32 @@ public class DN_MenuMannager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+       
+    }
+    void Start()
+    {
         if (TestScene)
         {
-                FirstPrompt = true;
+            FirstPrompt = true;
             TimerStart = true;
             TimePage.SetActive(true);
             CreatePauseScene = false;
             PauseMenu.SetActive(false);
             MainMenu = false;
+            FirstMenuPage.SetActive(false);
         }
-    }
-    void Start()
-    {
+        else
+        {
+            MainMenu = true;
+        }
+      
+        //if(MainMenu)
+        //{
+        //    CreditCamera = GameObject.Find("TruckCamera");
+        //    CameraScripts = CreditCamera.GetComponent<Camera>();
+        //}
         TextScripts = TimeText.GetComponent<Text>();
         VicotryText = VictoryTextObj.GetComponent<Text>();
-        MainMenu = true;
         DontDestroyOnLoad(this.gameObject);
         Timer = StarterTimer;
        
@@ -66,7 +82,7 @@ public class DN_MenuMannager : MonoBehaviour
     void Update()
     {
        
-        if(TimerStart)
+        if (TimerStart)
         {
             Timer -= Time.deltaTime;
 
@@ -77,16 +93,26 @@ public class DN_MenuMannager : MonoBehaviour
             
             if (!StopShowScoring)
             {
+                EndingCamera.SetActive(true);
                 VictotryScreen.SetActive(true);
                 FindObjectOfType<ScoringIndicators>().ShowScoring();
-                VicotryText.text = "Your score is " + Score.ToString();
+                VicotryText.text = "You have earned " + Score + " bucks".ToString();
                 StopShowScoring = true;
             }
         }
         if(Timer <= 0)
         {
-            AfterMathTimer -= Time.deltaTime;
+            if (!MainMenu && OneTimeBool == false)
+            {
+                SceneCamera = GameObject.Find("MainCamera");
+                SceneCameraScripts = SceneCamera.GetComponent<Camera>();
+                SceneCameraScripts.enabled = false;
+                OneTimeBool = true;
+                
+            }
+            
             EndingCamera.SetActive(true);
+            AfterMathTimer -= Time.deltaTime;
             Timer = 0;
         }
      
@@ -108,6 +134,7 @@ public class DN_MenuMannager : MonoBehaviour
         {
             Time.timeScale = 0;
             PauseMenu.SetActive(true);
+            FirstPrompt = false;
         }
         if(MainMenu == false && CreatePauseScene == false)
         {
@@ -117,6 +144,7 @@ public class DN_MenuMannager : MonoBehaviour
     }
     public void StartGame()
     {
+        FirstMenuPage.SetActive(false);
         FirstPrompt = true;
         TimerStart = true;
         TimePage.SetActive(true);
@@ -128,17 +156,23 @@ public class DN_MenuMannager : MonoBehaviour
     }
     public void Credits()
     {
+        CreditCamera = GameObject.Find("TruckCamera");
+        CameraScripts = CreditCamera.GetComponent<Camera>();
+        CameraScripts.enabled = true;
         CreditsPage.SetActive(true);
         FirstMenuPage.SetActive(false);
-        MainMenuCamera.SetActive(false);
-        CreditCamera.SetActive(true);
+        MainMenuCamera = GameObject.Find("Main Camera");
+        MainMenuCamera.SetActive(true);
+
     }
     public void back()
     {
         CreditsPage.SetActive(false);
         FirstMenuPage.SetActive(true);
         MainMenuCamera.SetActive(true);
-        CreditCamera.SetActive(false);
+        CameraScripts.enabled = false;
+        MainMenuCamera = GameObject.Find("Main Camera");
+        MainMenuCamera.SetActive(true);
     }
     public void ExitGame()
     {
@@ -146,12 +180,21 @@ public class DN_MenuMannager : MonoBehaviour
     }
     public void QuitToDesktop()
     {
+        Timer = StarterTimer;
+        EndingCamera.SetActive(false);
         SceneManager.LoadScene(0);
         CreatePauseScene = false;
         PauseMenu.SetActive(false);
         MainMenu = true;
         Restart = false;
         Score = 0;
+        FirstPrompt = false;
+        Time.timeScale = 1;
+        FirstMenuPage.SetActive(true);
+        TimePage.SetActive(false);
+        VictotryScreen.SetActive(false);
+        TestScene = false;
+        OneTimeBool = false;
     }
     public void ResetScene()
     {
@@ -181,6 +224,7 @@ public class DN_MenuMannager : MonoBehaviour
             CreatePauseScene = false;
             SceneManager.LoadScene("ThomasScene_02");
         }
+        OneTimeBool = false;
     }
     public void Resume()
     {
@@ -198,6 +242,7 @@ public class DN_MenuMannager : MonoBehaviour
         VictotryScreen.SetActive(false);
         StopShowScoring = false;
         EndingCamera.SetActive(false);
+        OneTimeBool = false;
     }
 
 }
