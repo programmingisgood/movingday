@@ -209,6 +209,8 @@ MonoBehaviour:
   speed: 30000
   visuals: {fileID: 312066976}
   joint: {fileID: 3759921547081664564}
+  rightArm: {fileID: 927998013}
+  leftArm: {fileID: 280855169}
   grabbing: 0
   ControlPFI: {fileID: 1600472243}
 --- !u!54 &8784163617810744801
