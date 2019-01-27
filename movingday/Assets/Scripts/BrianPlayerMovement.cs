@@ -30,6 +30,8 @@ public class BrianPlayerMovement : MonoBehaviour
 
     void Update()
     {
+        // Prevent a 0 length moveDir.
+        moveDir = moveDir.magnitude < 0.000001f ? new Vector3(0, 0, 1f) : moveDir;
         visuals.transform.rotation = Quaternion.Slerp(visuals.transform.rotation, Quaternion.LookRotation(grabbing ? -moveDir : moveDir), Time.deltaTime * 20f);
 
         if (!grabbing && Input.GetKey(KeyCode.Return))
@@ -45,7 +47,9 @@ public class BrianPlayerMovement : MonoBehaviour
             grabbing = false;
             joint.connectedBody = null;
         }
-        if(Input.GetAxis("Horizontal")!=0 && FindObjectOfType<DN_MenuMannager>().FirstLevel || Input.GetAxis("Vertical")!=0 && FindObjectOfType<DN_MenuMannager>().FirstLevel)
+
+        DN_MenuMannager menuManager = FindObjectOfType<DN_MenuMannager>();
+        if (menuManager != null && (Input.GetAxis("Horizontal")!=0 && menuManager.FirstLevel || Input.GetAxis("Vertical")!=0 && menuManager.FirstLevel))
         {
             ControlPFI.SetActive(false);
             FindObjectOfType<DN_MenuMannager>().FirstLevel = false;
