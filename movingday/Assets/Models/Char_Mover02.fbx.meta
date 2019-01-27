@@ -10,6 +10,12 @@ ModelImporter:
     100008: Mover02_LFoot
     100010: Mover02_RArm
     100012: Mover02_RFoot
+    100014: Mover_Body
+    100016: Mover_Head
+    100018: Mover_LArm
+    100020: Mover_LFoot
+    100022: Mover_RArm
+    100024: Mover_RFoot
     400000: //RootNode
     400002: Mover02_Body
     400004: Mover02_Head
@@ -17,6 +23,12 @@ ModelImporter:
     400008: Mover02_LFoot
     400010: Mover02_RArm
     400012: Mover02_RFoot
+    400014: Mover_Body
+    400016: Mover_Head
+    400018: Mover_LArm
+    400020: Mover_LFoot
+    400022: Mover_RArm
+    400024: Mover_RFoot
     2100000: diffuse
     2300000: Mover02_Body
     2300002: Mover02_Head
@@ -24,18 +36,36 @@ ModelImporter:
     2300006: Mover02_LFoot
     2300008: Mover02_RArm
     2300010: Mover02_RFoot
+    2300012: Mover_Body
+    2300014: Mover_Head
+    2300016: Mover_LArm
+    2300018: Mover_LFoot
+    2300020: Mover_RArm
+    2300022: Mover_RFoot
     3300000: Mover02_Body
     3300002: Mover02_Head
     3300004: Mover02_LArm
     3300006: Mover02_LFoot
     3300008: Mover02_RArm
     3300010: Mover02_RFoot
+    3300012: Mover_Body
+    3300014: Mover_Head
+    3300016: Mover_LArm
+    3300018: Mover_LFoot
+    3300020: Mover_RArm
+    3300022: Mover_RFoot
     4300000: Mover02_Head
     4300002: Mover02_Body
     4300004: Mover02_LFoot
     4300006: Mover02_RFoot
     4300008: Mover02_LArm
     4300010: Mover02_RArm
+    4300012: Mover_Head
+    4300014: Mover_Body
+    4300016: Mover_LFoot
+    4300018: Mover_RArm
+    4300020: Mover_LArm
+    4300022: Mover_RFoot
   externalObjects: {}
   materials:
     importMaterials: 1
