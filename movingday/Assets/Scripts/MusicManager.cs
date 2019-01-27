@@ -30,7 +30,7 @@ public class MusicManager : MonoBehaviour
         {
             source.clip = track1;
         }
-        else if (scene.name == "Main")
+        else
         {
             source.clip = track2;
         }
