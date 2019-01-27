@@ -16,6 +16,11 @@ public class MovingDayPlayerManager : MonoBehaviour
     }
     private List<PlayerInputData> players = new List<PlayerInputData>();
 
+    public int GetNumPlayers()
+    {
+        return players.Count;
+    }
+
     void Update()
     {
         CheckForNewPlayers();

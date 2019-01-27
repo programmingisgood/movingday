@@ -9,8 +9,10 @@ public class Truck : MonoBehaviour
     private class UnloadOrder
     {
         public ItemsList unloadItems = null;
-        public float pauseBetweenItems = 1f;
     }
+
+    [SerializeField]
+    private MovingDayPlayerManager playerManager = null;
 
     [SerializeField]
     private List<UnloadOrder> unloadItemsOrder = null;
@@ -48,7 +50,13 @@ public class Truck : MonoBehaviour
                         GameObject nextItem = Instantiate(unloadOrder.unloadItems.GetItemPrefabs()[i], spawnPoint.position, spawnPoint.rotation);
                         nextItem.GetComponent<MovingItem>().ExitTruck(itemExitPoint.position, itemFinishMovementPoint.position);
 
-                        yield return new WaitForSeconds(unloadOrder.pauseBetweenItems);
+                        int numPlayers = playerManager.GetNumPlayers();
+                        float maxPauseTime = 6f;
+                        float minPauseTime = 2f;
+                        float reducePausePerPlayer = 1f;
+                        float pauseTime = maxPauseTime - (reducePausePerPlayer * numPlayers);
+                        pauseTime = Mathf.Max(minPauseTime, pauseTime);
+                        yield return new WaitForSeconds(pauseTime);
                     }
                 }
             }
