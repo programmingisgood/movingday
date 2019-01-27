@@ -4,7 +4,20 @@ using UnityEngine;
 
 public class DN_DontDestroy : MonoBehaviour
 {
+    public static DN_DontDestroy MusicInstance;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        if (MusicInstance == null)
+        {
+            MusicInstance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+    }
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);

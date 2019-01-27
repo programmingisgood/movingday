@@ -56,6 +56,11 @@ public class BrianPlayerMovement : MonoBehaviour
         {
             SetGrabbedObject(null);
         }
+        if(DN_MenuMannager.Restart)
+        {
+            ControlPFI.SetActive(false);
+            FindObjectOfType<DN_MenuMannager>().FirstPrompt = false;
+        }
 
         if(FindObjectOfType<DN_MenuMannager>() != null)
         {

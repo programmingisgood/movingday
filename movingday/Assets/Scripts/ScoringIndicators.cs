@@ -10,10 +10,10 @@ public class ScoringIndicators : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            ShowScoring();
-        }
+        //if (Input.GetKeyDown(KeyCode.P))
+        //{
+        //    ShowScoring();
+        //}
     }
 
     public void ShowScoring()

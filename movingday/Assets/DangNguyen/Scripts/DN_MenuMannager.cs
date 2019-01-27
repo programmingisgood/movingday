@@ -25,18 +25,45 @@ public class DN_MenuMannager : MonoBehaviour
     public GameObject EndingCamera;
     public float AfterMathTimer;
     public float Score;
+    public bool TestScene;
+    public static DN_MenuMannager MenuInstance;
+    public static bool Restart;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        if (MenuInstance == null)
+        {
+            MenuInstance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+        if (TestScene)
+        {
+                FirstPrompt = true;
+            TimerStart = true;
+            TimePage.SetActive(true);
+            CreatePauseScene = false;
+            PauseMenu.SetActive(false);
+            MainMenu = false;
+        }
+    }
     void Start()
     {
         TextScripts = TimeText.GetComponent<Text>();
         VicotryText = VictoryTextObj.GetComponent<Text>();
         MainMenu = true;
         DontDestroyOnLoad(this.gameObject);
+        Timer = StarterTimer;
+       
     }
 
     // Update is called once per frame
     void Update()
     {
+       
         if(TimerStart)
         {
             Timer -= Time.deltaTime;
@@ -94,6 +121,7 @@ public class DN_MenuMannager : MonoBehaviour
         PauseMenu.SetActive(false);
         SceneManager.LoadScene(1);
         MainMenu = false;
+        Score = 0;
     }
     public void Credits()
     {
@@ -115,12 +143,22 @@ public class DN_MenuMannager : MonoBehaviour
         CreatePauseScene = false;
         PauseMenu.SetActive(false);
         MainMenu = true;
+        Restart = false;
+        Score = 0;
     }
     public void ResetScene()
     {
         Scene CurrentScene = SceneManager.GetActiveScene();
         string sceneName = CurrentScene.name;
         EndingCamera.SetActive(false);
+        Score = 0;
+        Time.timeScale = 1;
+        AfterMathTimer = 1;
+        Timer = StarterTimer;
+        VictotryScreen.SetActive(false);
+        StopShowScoring = false;
+        FirstPrompt = false;
+        Restart = true;
         if (sceneName == "DangTest")
         {
             CreatePauseScene = false;
@@ -131,17 +169,28 @@ public class DN_MenuMannager : MonoBehaviour
             CreatePauseScene = false;
             SceneManager.LoadScene("Main");
         }
-        Time.timeScale = 1;
-        AfterMathTimer = 1;
-        Timer = StarterTimer;
-        VictotryScreen.SetActive(false);
-        StopShowScoring = false;
+        if (sceneName == "ThomasScene_02")
+        {
+            CreatePauseScene = false;
+            SceneManager.LoadScene("ThomasScene_02");
+        }
     }
     public void Resume()
     {
         Time.timeScale = 1;
         CreatePauseScene = false;
         
+    }
+    public void NextScene()
+    {
+        Score = 0;
+        SceneManager.LoadScene(2);
+        Time.timeScale = 1;
+        AfterMathTimer = 1;
+        Timer = StarterTimer;
+        VictotryScreen.SetActive(false);
+        StopShowScoring = false;
+        EndingCamera.SetActive(false);
     }
 
 }

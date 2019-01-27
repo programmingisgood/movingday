@@ -52,6 +52,10 @@ public class MovingItem : MonoBehaviour
             Destroy(gameObject.GetComponent<MovingItem>());
             
         }
+        if(DN_MenuMannager.Restart && BoxPrompt)
+        {
+            Prompt.SetActive(false);
+        }
 
         if (!grabbed)
         {
