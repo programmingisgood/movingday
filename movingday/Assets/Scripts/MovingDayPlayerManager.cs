@@ -12,6 +12,7 @@ public class MovingDayPlayerManager : MonoBehaviour
     {
         public InputDevice inputDevice;
         public GameObject playerGO;
+        public bool keyboard = false;
     }
     private List<PlayerInputData> players = new List<PlayerInputData>();
 
@@ -29,6 +30,10 @@ public class MovingDayPlayerManager : MonoBehaviour
             {
                 CreatePlayer(device);
             }
+            else if (Input.GetKey(KeyCode.Return) && !CheckContainsKeyboard())
+            {
+                CreatePlayer(null);
+            }
         }
     }
 
@@ -45,10 +50,24 @@ public class MovingDayPlayerManager : MonoBehaviour
         return false;
     }
 
+    private bool CheckContainsKeyboard()
+    {
+        foreach (PlayerInputData playerInputData in players)
+        {
+            if (playerInputData.keyboard)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     private void CreatePlayer(InputDevice inputDevice)
     {
         PlayerInputData newPlayerInputData = new PlayerInputData();
         newPlayerInputData.inputDevice = inputDevice;
+        newPlayerInputData.keyboard = inputDevice == null;
         newPlayerInputData.playerGO = Instantiate(playerPrefab);
         newPlayerInputData.playerGO.GetComponent<BrianPlayerMovement>().SetInputDevice(inputDevice);
         players.Add(newPlayerInputData);

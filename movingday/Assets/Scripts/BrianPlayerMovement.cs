@@ -34,17 +34,36 @@ public class BrianPlayerMovement : MonoBehaviour
         myInputDevice = setInputDevice;
     }
 
+    public bool GetActionPressed()
+    {
+        if (myInputDevice != null)
+        {
+            return myInputDevice.GetControl(InputControlType.Action1);
+        }
+        return Input.GetKey(KeyCode.Return);
+    }
+
+    public Vector2 GetInputDirection()
+    {
+        if (myInputDevice != null)
+        {
+            return myInputDevice.Direction;
+        }
+
+        return new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+    }
+
     void Update()
     {
         // Prevent the moveDir from ever being zeroed out which will cause a warning.
         moveDir = moveDir.magnitude < 0.00001f ? new Vector3(0, 0, 1f) : moveDir;
         visuals.transform.rotation = Quaternion.Slerp(visuals.transform.rotation, Quaternion.LookRotation(grabbing ? -moveDir : moveDir), Time.deltaTime * 20f);
 
-        if (!grabbing && myInputDevice.GetControl(InputControlType.Action1))
+        if (!grabbing && GetActionPressed())
         {
             AttemptGrab();
         }
-        else if (grabbing && !myInputDevice.GetControl(InputControlType.Action1))
+        else if (grabbing && !GetActionPressed())
         {
             SetGrabbedObject(null);
         }
@@ -56,7 +75,7 @@ public class BrianPlayerMovement : MonoBehaviour
 
         if(FindObjectOfType<DN_MenuMannager>() != null)
         {
-            Vector2 inputDir = myInputDevice.Direction;
+            Vector2 inputDir = GetInputDirection();
             if (inputDir.x != 0 && FindObjectOfType<DN_MenuMannager>().FirstPrompt || inputDir.y != 0 && FindObjectOfType<DN_MenuMannager>().FirstPrompt)
             {
                 ControlPFI.SetActive(false);
@@ -81,7 +100,7 @@ public class BrianPlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector2 inputDir = myInputDevice.Direction;
+        Vector2 inputDir = GetInputDirection();
         float horz = inputDir.x;
         float vert = inputDir.y;
 
