@@ -209,20 +209,15 @@ public class DN_MenuMannager : MonoBehaviour
         StopShowScoring = false;
         FirstPrompt = false;
         Restart = true;
-        if (sceneName == "DangTest")
+        if (sceneName == "FirstLevel")
         {
             CreatePauseScene = false;
-            SceneManager.LoadScene("DangTest");
+            SceneManager.LoadScene("FirstLevel");
         }
-        if (sceneName == "Main")
+        if (sceneName == "SecondLevel")
         {
             CreatePauseScene = false;
-            SceneManager.LoadScene("Main");
-        }
-        if (sceneName == "ThomasScene_02")
-        {
-            CreatePauseScene = false;
-            SceneManager.LoadScene("ThomasScene_02");
+            SceneManager.LoadScene("SecondLevel");
         }
         OneTimeBool = false;
     }

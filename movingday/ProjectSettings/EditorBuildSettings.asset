@@ -12,11 +12,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: 10070ce229b4cd1419aad3c83dbaddc2
   - enabled: 1
+    path: Assets/Scenes/SecondLevel.unity
+    guid: bc5533f0bdc582f4cb8365578297dfc4
+  - enabled: 1
+    path: Assets/Scenes/FirstLevel.unity
+    guid: c6184515e433cb64f978991034ebf31b
+  - enabled: 0
     path: Assets/ThomasIu/ThomasScene_01.unity
     guid: e9e18347c7c175d4e8095aab5d318b3c
-  - enabled: 1
-    path: Assets/Scenes/Main.unity
-    guid: bc5533f0bdc582f4cb8365578297dfc4
   - enabled: 0
     path: Assets/DangNguyen/DangTest.unity
     guid: 96978ef7bc18eaf4797166003887a8aa
