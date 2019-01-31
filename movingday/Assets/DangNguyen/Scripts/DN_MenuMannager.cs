@@ -24,6 +24,7 @@ public class DN_MenuMannager : MonoBehaviour
     public bool StopShowScoring;
     public GameObject EndingCamera;
     public float AfterMathTimer;
+    public float AfterMathTimerSet;
     public float Score;
     public bool TestScene;
     public static DN_MenuMannager MenuInstance;
@@ -34,6 +35,7 @@ public class DN_MenuMannager : MonoBehaviour
     private Camera CameraScripts;
     private Camera SceneCameraScripts;
     private bool OneTimeBool;
+   
 
     // Start is called before the first frame update
     private void Awake()
@@ -75,7 +77,7 @@ public class DN_MenuMannager : MonoBehaviour
         VicotryText = VictoryTextObj.GetComponent<Text>();
         DontDestroyOnLoad(this.gameObject);
         Timer = StarterTimer;
-
+        AfterMathTimer = AfterMathTimerSet;
     }
 
     // Update is called once per frame
@@ -132,12 +134,14 @@ public class DN_MenuMannager : MonoBehaviour
         }
         if(MainMenu == false && CreatePauseScene)
         {
+            TimePage.SetActive(false);
             Time.timeScale = 0;
             PauseMenu.SetActive(true);
             FirstPrompt = false;
         }
         if(MainMenu == false && CreatePauseScene == false)
         {
+            TimePage.SetActive(true);
             Time.timeScale = 1;
             PauseMenu.SetActive(false);
         }
@@ -180,6 +184,8 @@ public class DN_MenuMannager : MonoBehaviour
     }
     public void QuitToDesktop()
     {
+        StopShowScoring = false;
+        AfterMathTimer = AfterMathTimerSet;
         Timer = StarterTimer;
         EndingCamera.SetActive(false);
         SceneManager.LoadScene(0);
@@ -198,6 +204,7 @@ public class DN_MenuMannager : MonoBehaviour
     }
     public void ResetScene()
     {
+        AfterMathTimer = AfterMathTimerSet;
         Scene CurrentScene = SceneManager.GetActiveScene();
         string sceneName = CurrentScene.name;
         EndingCamera.SetActive(false);
@@ -229,6 +236,7 @@ public class DN_MenuMannager : MonoBehaviour
     }
     public void NextScene()
     {
+        AfterMathTimer = AfterMathTimerSet;
         Score = 0;
         SceneManager.LoadScene(2);
         Time.timeScale = 1;
